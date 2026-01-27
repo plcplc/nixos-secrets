@@ -1,0 +1,22 @@
+# This example uses YAML anchors which allows reuse of multiple keys 
+# without having to repeat yourself.
+# Also see https://github.com/Mic92/dotfiles/blob/d6114726d859df36ccaa32891c4963ae5717ef7f/nixos/.sops.yaml
+# for a more complex example.
+keys:
+  - &admin_plc 3B46C51B70130CEB5BC0F616A6AF4C0AF7334BF4
+  - &host_plc_nuc age1w2jtljqp3fc08q4zynp34xs7fcdj6hy60hpy3lz6p7pu52ns24kqy2309p
+creation_rules:
+  # Common secrets are available to all keys
+  - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - pgp:
+      - *admin_plc
+      age:
+      - *host_plc_nuc
+  # Host-specific secrets are only available to the admin key and the host key
+  - path_regex: secrets/hosts/plc-nuc/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - pgp:
+      - *admin_plc
+      age:
+      - *host_plc_nuc
