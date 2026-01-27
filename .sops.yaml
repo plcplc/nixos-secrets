@@ -7,14 +7,14 @@ keys:
   - &host_plc_nuc age1w2jtljqp3fc08q4zynp34xs7fcdj6hy60hpy3lz6p7pu52ns24kqy2309p
 creation_rules:
   # Common secrets are available to all keys
-  - path_regex: secrets/common/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: common/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       - *admin_plc
       age:
       - *host_plc_nuc
   # Host-specific secrets are only available to the admin key and the host key
-  - path_regex: secrets/hosts/plc-nuc/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: hosts/plc-nuc/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - pgp:
       - *admin_plc
