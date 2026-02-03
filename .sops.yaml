@@ -5,6 +5,7 @@
 keys:
   - &admin_plc 3B46C51B70130CEB5BC0F616A6AF4C0AF7334BF4
   - &host_plc_nuc age1w2jtljqp3fc08q4zynp34xs7fcdj6hy60hpy3lz6p7pu52ns24kqy2309p
+  - &host_plc_librem age13fq50t3krdymhqae0jjmztfjy6vzy0pce626vwpz6gvfw68phqpqvj45uj
 creation_rules:
   # Common secrets are available to all keys
   - path_regex: common/[^/]+\.(yaml|json|env|ini)$
@@ -13,6 +14,7 @@ creation_rules:
       - *admin_plc
       age:
       - *host_plc_nuc
+      - *host_plc_librem
   # Host-specific secrets are only available to the admin key and the host key
   - path_regex: hosts/plc-nuc/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -20,3 +22,9 @@ creation_rules:
       - *admin_plc
       age:
       - *host_plc_nuc
+  - path_regex: hosts/plc-librem/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - pgp:
+      - *admin_plc
+      age:
+      - *host_plc_librem
