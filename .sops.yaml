@@ -4,9 +4,10 @@
 # for a more complex example.
 keys:
   - &admin_plc 3B46C51B70130CEB5BC0F616A6AF4C0AF7334BF4
+  - &admin_xbow_mac age1z50mzxa4u72492mujj5uwz8lzccq3u4d4lwvm8zp3g8nsmf284lsu8w476
   - &host_plc_nuc age1w2jtljqp3fc08q4zynp34xs7fcdj6hy60hpy3lz6p7pu52ns24kqy2309p
   - &host_plc_librem age13fq50t3krdymhqae0jjmztfjy6vzy0pce626vwpz6gvfw68phqpqvj45uj
-  - &host_xbow_vm age1z50mzxa4u72492mujj5uwz8lzccq3u4d4lwvm8zp3g8nsmf284lsu8w476
+  - &host_xbow_vm age1ee324ald56mzxxyy39khchcs9elk06ac553hvmphqhttc8arzapq000mhn
 creation_rules:
   # Common secrets are available to all keys
   - path_regex: common/[^/]+\.(yaml|json|env|ini)$
@@ -14,6 +15,7 @@ creation_rules:
     - pgp:
       - *admin_plc
       age:
+      - *admin_xbow_mac
       - *host_plc_nuc
       - *host_plc_librem
       - *host_xbow_vm
@@ -35,4 +37,5 @@ creation_rules:
     - pgp:
       - *admin_plc
       age:
+      - *admin_xbow_mac
       - *host_xbow_vm
