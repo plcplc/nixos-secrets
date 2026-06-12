@@ -58,3 +58,7 @@ $ age-keygen -o ~/.config/sops/age/keys.txt
 On MacOS, `keys.txt` lives in `~/Library/Application
 Support/sops/age/keys.txt` (Unless `$XDG_CONFIG_HOME` is set). See [SOPS:
 Secrets OPerations / Encrypting using age](https://getsops.io/docs/).
+
+## Setting up GPG on the Mac host
+
+See https://alexnorell.com/post/set-up-gpg/#set-up-pinentry
