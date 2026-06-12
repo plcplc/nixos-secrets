@@ -1,8 +1,29 @@
-# Adding a new host:
+# Adding a new (physical) host:
 
 Get the age-formatted public host key:
 ```
 ssh-keyscan <hostname> | ssh-to-age
+```
+
+Add that to `.sops.yaml` as appropriate.
+
+Run `sops updatekeys` on all relevant files.
+
+# Adding a new (vm) host:
+
+For a dynamically provisioned virtual machine it can be more convenient to
+generate the ssh host keys upfront, store them with SOPS, and inject them with
+nixos-anywhere instead of having the machine generate them on first boot.
+
+To generate keys in `./etc/ssh`:
+
+```
+ssh-keygen -A -f .
+```
+
+Then generate the age-version of ed25119 key:
+```
+ssh-to-age < etc/ssh/ssh_host_ed25519_key.pub > age_ed25519_key.pub
 ```
 
 Add that to `.sops.yaml` as appropriate.
