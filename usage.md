@@ -30,6 +30,12 @@ Add that to `.sops.yaml` as appropriate.
 
 Run `sops updatekeys` on all relevant files.
 
+# Generating a ssh user identity key
+
+`ssh-keygen -f id_ed25519 -C plc@<hostname>`
+
+Add private key to secrets.yaml as appropriate.
+
 
 # Add SOPS master key to gpg
 
